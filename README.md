@@ -21,8 +21,8 @@ $ heroku create wordcount-stage
 ```
 2. Add the apps to git remotes.
 ```bash
-$ git remote add pro git@heroku.com:flask-kosub-pro.git
-$ git remote add stage git@heroku.com:flask-kosub-stage.git
+$ git remote add pro git@heroku.com:kosub-api-pro.git
+$ git remote add stage git@heroku.com:kosub-api-stage.git
 ```
 and can push apps live to Heroku
 ```basg
@@ -43,7 +43,7 @@ $ git push pro master
  app.config.from_object(os.environ['APP_SETTINGS'])
  ```
 
-###### Local Settings
+#### Local Settings
 To make sure `APP_SETTINGS="...."` commands be decleared automaticaaly.
 1. python module `autoenv` installed in global.
 2. `.env` file add the following:
@@ -56,8 +56,8 @@ $ export APP_SETTINGS="config.DevelopmentConfig"
 $ echo "source `which activate.sh`" >> ~/.bashrc
 $ source ~/.bashrc
 ```
->> Now, when cd into dir, the virtual environment will automatically be started and the APP_SETTINGS variable is declared.
->> ps. 1st time cd into dir would look like
+> Now, when cd into dir, the virtual environment will automatically be started and the APP_SETTINGS variable is declared. <br />
+> ps. 1st time cd into dir would look like
 ```bash
 autoenv:
 autoenv: WARNING:
@@ -70,7 +70,7 @@ autoenv:     --- (end contents) -----------------------------------------
 autoenv:
 autoenv: Are you sure you want to allow this? (y/N)
 ```
-###### Heroku Settings
+#### Heroku Settings
 - For staging:
 ```bash
 heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
@@ -79,3 +79,8 @@ heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
 ```bash
 heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
 ```
+
+##### (ref) check remote brance
+ - `git remote`
+ - `git remote -v`
+ - `git remote rm pro` to remove pro brance
