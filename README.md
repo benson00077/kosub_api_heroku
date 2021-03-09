@@ -14,30 +14,30 @@ $ deactivate
 ```
 
 ## <font color=#FF6600> (Step.2) Manage with 2 Workflow : production & staging </font>
-- Create heroku apps
+1. Create heroku apps
     ```bash
     $ heroku create wordcount-pro
     $ heroku create wordcount-stage
     ```
-- Add the apps to git remotes.
+2. Add the apps to git remotes.
     ```bash
     $ git remote add pro git@heroku.com:[myapp-pro].git
     $ git remote add stage git@heroku.com:[my-app-stage].git
     # or maybe ...
     $ git remote add stage https://git.heroku.com/[myapp-pro-stage].git
     ```
-- Now can push apps live to Heroku
+3. Now can push apps live to Heroku
     ```bash
     $ git push stage master
     $ git push pro master
     ```
 
-- Config settings (different py Class) set in `config.py`
+4. Config settings (different py Class) set in `config.py`
   `ProductionConfig`, `StagingConfig`, `DevelopmentConfig`, `TestingConfig`
 
-- `APP_SETTINGS` initialize
- > to know which workflow to switch, which would be decleared individually on Local, on Heroku stage, or Heroku pro app.
- - in flask `app.py`
+5. `APP_SETTINGS` initialize
+ + to know which workflow to switch, which would be decleared individually on Local, on Heroku stage, or Heroku pro app.
+ +  in flask `app.py`:
    ```python
    app = Flask(__name__)
    app.config.from_object(os.environ['APP_SETTINGS'])
@@ -59,7 +59,7 @@ $ source ~/.bashrc
 > Now, when cd into dir, the virtual environment will automatically be started and the APP_SETTINGS variable is declared. <br />
 > ps. 1st time cd into dir would look like
 
-## <font color=#800000> (Step.2-3) Heroku Settings </font>
+## (Step.2-3) Heroku Settings
 - For staging:
 ```bash
 $ heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
@@ -69,26 +69,28 @@ $ heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
 $ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
 ```
 
-### (ref) check remote brance
+- ref: check remote branch
  - `git remote`
  - `git remote -v`
  - `git remote rm pro` to remove pro brance
 
- <font color=#FF6600> ## (Step.3) db on heroku </font>
- - Create addons
+ ## (Step.3) db on heroku
+ 1. Create addons: 
  ```basg
  $ heroku addons:create heroku-postgresql:hobby-dev --app [myapp-stage]
  ```
- - Check addons status
+ 2. Check addons status: 
  ```bash
  $ heroku config --app [myapp-stage]
- === kosub-api-stage Config Vars
+ === kosub-api-pro Config Vars
+ APP_SETTINGS: config.ProductionConfig
+ DATABASE_URL: postgres://...:...
  ```
 
- <font color=#FF6600> ## (Step.3-2) connect to db </font>
- - ~~ Adds `DATABASE_URL = os.environ['DATABASE_URL']` in `config.py` parent Class. ~~ falied.
+ ## (Step.3-2) connect to db
+ - <strike>Adds `DATABASE_URL = os.environ['DATABASE_URL']` in `config.py` parent Class.</strike> falied.
  - Adds `DATABASE_URL = os.environ['DATABASE_URL']`  in `app.py`. successed.
  - Adds `export DATABASE_URL="postgresql:///kosub_subtitles"` in `.env` file. (For loacal site access)
 
- <font color=#FF6600> ## (Step.3-3) import local psql to heroku </font>
+ ## (Step.3-3) import local psql to heroku
  ` $ heroku pg:psql --app [my-app-pro] < mysql.sql
