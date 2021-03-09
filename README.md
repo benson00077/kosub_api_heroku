@@ -62,18 +62,17 @@ $ source ~/.bashrc
 ## <font color=#800000> (Step.2-3) Heroku Settings </font>
 - For staging:
 ```bash
-heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
+$ heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
 ```
 - For production:
 ```bash
-heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
+$ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
 ```
 
 ### (ref) check remote brance
  - `git remote`
  - `git remote -v`
  - `git remote rm pro` to remove pro brance
-
 
  <font color=#FF6600> ## (Step.3) db on heroku </font>
  - Create addons
@@ -87,5 +86,9 @@ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
  ```
 
  <font color=#FF6600> ## (Step.3-2) connect to db </font>
- - Adds `DATABASE_URL = os.environ['DATABASE_URL']` in `config.py` parent Class. 
- - Adds `export DATABASE_URL="postgresql:///kosub_subtitles"` in `.env` file. (For loacal access I think)
+ - ~~ Adds `DATABASE_URL = os.environ['DATABASE_URL']` in `config.py` parent Class. ~~ falied.
+ - Adds `DATABASE_URL = os.environ['DATABASE_URL']`  in `app.py`. successed.
+ - Adds `export DATABASE_URL="postgresql:///kosub_subtitles"` in `.env` file. (For loacal site access)
+
+ <font color=#FF6600> ## (Step.3-3) import local psql to heroku </font>
+ ` $ heroku pg:psql --app [my-app-pro] < mysql.sql
