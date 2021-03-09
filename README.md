@@ -41,7 +41,7 @@ $ deactivate
    app.config.from_object(os.environ['APP_SETTINGS'])
    ```
 
-### <font color=#800000> `APP_SETTINGS` Local Settings </font>
+### <font color=#800000> (Step.2-2) Local Settings </font>
 To make sure `APP_SETTINGS="...."` commands be decleared automaticaaly.
 1. python module `autoenv` installed in global.
 2. `.env` file add the following:
@@ -57,7 +57,7 @@ $ source ~/.bashrc
 > Now, when cd into dir, the virtual environment will automatically be started and the APP_SETTINGS variable is declared. <br />
 > ps. 1st time cd into dir would look like
 
-### <font color=#800000> `APP_SETTINGS` Heroku Settings </font>
+### <font color=#800000> (Step.2-3) Heroku Settings </font>
 - For staging:
 ```bash
 heroku config:set APP_SETTINGS=config.StagingConfig --remote stage
