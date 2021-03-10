@@ -260,7 +260,7 @@ def api_push_sentencebook():
         time = strftime("%Y-%m-%d %H:%M:%S", localtime())
 
         # UPDATE sentencebook table
-        conn = psycopg2.cnnect(DATABASE_URL, sslmode='require')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
         for data in request_datas:
