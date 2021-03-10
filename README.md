@@ -92,8 +92,9 @@ $ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
  - Adds `DATABASE_URL = os.environ['DATABASE_URL']`  in `app.py`. successed.
  - Adds `export DATABASE_URL="postgresql:///kosub_subtitles"` in `.env` file. (For loacal site access)
 
- ## (Step.3-3) import local sql file to heroku (sqlite -> psql)
- 1. local sqlite3 db to sql file `$ psql -d [my-psql-db] -U [psql-user] -W < sqlite-dump.sql ` and revise the file to allign with psql syntax.
- 2. local psql db to sql file `$pg_dump --no-owner [my-psql-db] > dump.sql`
- 3. psql file to heroku `$ heroku pg:psql --app [my-app-pro] < dump.sql`
+ ## (Step.3-3) import local sql file to heroku (SQLite -> PSQL)
+ 1. Dump SQLite3 and revise this `.sql` file to allign with PSQL syntax.
+ 2. Import the file to local PSQL `$ psql -d [my-psql-db] -U [psql-user] -W < sqlite-dump.sql `
+ 2. Dump local PSQL `$ pg_dump --no-owner [my-psql-db] > dump.sql`. Get output dump `.sql` files.
+ 3. Upload the PSQL dump file to Heroku addons `$ heroku pg:psql --app [my-app-pro] < dump.sql`.
  
