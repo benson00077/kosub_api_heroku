@@ -322,7 +322,7 @@ def api_push_sentencebook():
                             JOIN kosentence_zh ON sentence_id = kosentence_zh.id
                             WHERE sentencebook.id = %s
                             ORDER BY time''',
-                            (user_id))
+                            (user_id, )) # EVEN if just one para for string formatting, still have to convert to tuple
         rows = cur.fetchall()
 
         print(f"----------- Accessing user:{user_id}'s Sentence Book")
@@ -386,7 +386,7 @@ def login():
     cur = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
 
     cur.execute('''SELECT * FROM "users" WHERE username = %s''',
-                        (request_datas["user"]))
+                        (request_datas["user"], )) # EVEN if just one para for string formatting, still have to convert to tuple
     rows = cur.fetchall()
 
     userId = ""
