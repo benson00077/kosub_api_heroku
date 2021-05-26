@@ -86,6 +86,10 @@ $ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
  APP_SETTINGS: config.ProductionConfig
  DATABASE_URL: postgres://...:...
  ```
+ 3. Check server status: 
+ ```bash
+ $ heroku logs --app kosub-api-pro 
+ ```
 
  ## (Step.3-2) connect to db
  - <strike>Adds `DATABASE_URL = os.environ['DATABASE_URL']` in `config.py` parent Class.</strike> falied.
