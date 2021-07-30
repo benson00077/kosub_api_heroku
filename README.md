@@ -102,3 +102,10 @@ $ heroku config:set APP_SETTINGS=config.ProductionConfig --remote pro
  2. Dump local PSQL `$ pg_dump --no-owner [my-psql-db] > dump.sql`. Get output dump `.sql` files.
  3. Upload the PSQL dump file to Heroku addons `$ heroku pg:psql --app [my-app-pro] < dump.sql`.
  
+
+ ## Reference 
+ The code is run under conda virtual env (base) <br/>
+ I'm currently work more on JS and thus will not set conda's base environment auto actived 
+ ```zsh
+conda config --set auto_activate_base false
+ ```
